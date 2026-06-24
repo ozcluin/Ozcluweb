@@ -23,6 +23,9 @@ export const metadata: Metadata = {
   title: "OZCLU — Transparent Background Verification & Screening Services",
   description:
     "OzClu provides transparent, technology-driven background verification and screening services. Employment checks, identity verification, compliance screening, and business due diligence — built on trust, accuracy, and full transparency.",
+  icons: {
+    icon: "/favicon.svg",
+  },
   keywords: [
     "background verification",
     "background checks",

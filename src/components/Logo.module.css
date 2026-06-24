@@ -23,7 +23,8 @@
   transition: transform var(--transition-base);
 }
 
-.logo:hover .goldenO {
+.logo:hover .goldenO,
+.logo.animating .goldenO {
   transform: rotate(-5deg);
   transform-origin: 18px 14px;
 }
@@ -34,7 +35,8 @@
   opacity: 0.75;
 }
 
-.logo:hover .glassGlint {
+.logo:hover .glassGlint,
+.logo.animating .glassGlint {
   transform: translate(0.6px, -0.6px) scale(1.02);
   transform-origin: 13px 9px;
   opacity: 1;
@@ -52,7 +54,8 @@
   transition: d 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.logo:hover .upperLid {
+.logo:hover .upperLid,
+.logo.animating .upperLid {
   d: path("M0 15 Q14 1.5, 28 15");
 }
 
@@ -61,7 +64,8 @@
   transition: d 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.logo:hover .lowerLid {
+.logo:hover .lowerLid,
+.logo.animating .lowerLid {
   d: path("M0 15 Q14 28.5, 28 15");
 }
 
@@ -71,6 +75,7 @@
   transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.logo:hover .hiddenE {
+.logo:hover .hiddenE,
+.logo.animating .hiddenE {
   opacity: 1 !important;
 }

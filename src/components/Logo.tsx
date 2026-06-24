@@ -1,3 +1,6 @@
+'use client';
+
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import styles from './Logo.module.css';
 
@@ -7,6 +10,29 @@ interface LogoProps {
 }
 
 export default function Logo({ size = 'md', className = '' }: LogoProps) {
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+
+    const triggerAnimation = () => {
+      setIsAnimating(true);
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        setIsAnimating(false);
+      }, 1000); // Reset exactly 1 second after activity stops
+    };
+
+    window.addEventListener('scroll', triggerAnimation, { passive: true });
+    window.addEventListener('touchstart', triggerAnimation, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', triggerAnimation);
+      window.removeEventListener('touchstart', triggerAnimation);
+      clearTimeout(timeoutId);
+    };
+  }, []);
+
   const sizeMap = {
     sm: { height: 28, fontSize: '1.25rem' },
     md: { height: 38, fontSize: '1.625rem' },
@@ -16,7 +42,11 @@ export default function Logo({ size = 'md', className = '' }: LogoProps) {
   const s = sizeMap[size];
 
   return (
-    <Link href="/" className={`${styles.logo} ${styles[size]} ${className}`} aria-label="OzClu Home">
+    <Link 
+      href="/" 
+      className={`${styles.logo} ${styles[size]} ${isAnimating ? styles.animating : ''} ${className}`} 
+      aria-label="OzClu Home"
+    >
       <svg
         viewBox="0 0 200 40"
         height={s.height}

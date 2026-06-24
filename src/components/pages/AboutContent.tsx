@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import WhyOzClu from "@/components/WhyOzClu";
 import AboutFeatures from "@/components/AboutFeatures";
 import PeopleFirst from "@/components/PeopleFirst";
@@ -10,7 +11,22 @@ export default function AboutContent() {
     <>
       {/* About Hero */}
       <section className={styles.hero}>
-        <div className="container">
+        {/* Background layers */}
+        <div className={styles.bgLayer}>
+          <Image
+            src="/images/about-bg.png"
+            alt=""
+            fill
+            priority
+            quality={90}
+            className={styles.bgImage}
+            sizes="100vw"
+          />
+          <div className={styles.bgOverlay} />
+          <div className={styles.bgGradient} />
+        </div>
+
+        <div className={`container ${styles.content}`}>
           <ScrollReveal>
             <span className="label-md" style={{ color: "var(--primary)", marginBottom: "var(--space-4)", display: "block" }}>
               About OzClu

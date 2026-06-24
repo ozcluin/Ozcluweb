@@ -8,6 +8,7 @@ interface Step {
   description: string;
   icon: string;
   colorClass?: string; // Custom color override for AI steps
+  tier: 1 | 2 | 3; // 1 = mobile/tab/laptop, 2 = tab/laptop, 3 = laptop only
 }
 
 interface Phase {
@@ -27,6 +28,7 @@ const phases: Phase[] = [
         tooltipTitle: 'Initiate Request',
         description: 'HR initiates a background check request through the secure dashboard or via direct API integration.',
         icon: 'building',
+        tier: 1,
       },
       {
         id: 'creates-order',
@@ -34,6 +36,7 @@ const phases: Phase[] = [
         tooltipTitle: 'Define Scope',
         description: 'HR selects the specific screening package (e.g., identity, employment history, or compliance checks).',
         icon: 'clipboard',
+        tier: 3,
       },
       {
         id: 'invite-sent',
@@ -41,6 +44,7 @@ const phases: Phase[] = [
         tooltipTitle: 'Automated Outreach',
         description: 'An encrypted email invite is automatically sent to the candidate with login links to the secure portal.',
         icon: 'envelope',
+        tier: 2,
       },
       {
         id: 'candidate',
@@ -48,6 +52,7 @@ const phases: Phase[] = [
         tooltipTitle: 'Secure Portal Access',
         description: 'The candidate accesses the mobile-friendly, secure portal to complete their screening form.',
         icon: 'user',
+        tier: 1,
       },
       {
         id: 'fills-forms',
@@ -55,6 +60,7 @@ const phases: Phase[] = [
         tooltipTitle: 'Consent & History',
         description: 'The candidate inputs their personal history details and provides formal consent for verification.',
         icon: 'edit',
+        tier: 3,
       },
       {
         id: 'uploads-docs',
@@ -62,6 +68,7 @@ const phases: Phase[] = [
         tooltipTitle: 'Document Upload',
         description: 'The candidate securely uploads digital copies of their passport, credentials, and employment proof.',
         icon: 'paperclip',
+        tier: 2,
       },
     ],
   },
@@ -75,6 +82,7 @@ const phases: Phase[] = [
         tooltipTitle: 'Real-time Tracker',
         description: 'HR tracks candidate progress and initial document completion states on their control dashboard.',
         icon: 'eye',
+        tier: 3,
       },
       {
         id: 'approved',
@@ -82,6 +90,7 @@ const phases: Phase[] = [
         tooltipTitle: 'Trigger Check',
         description: 'HR approves the completeness of the candidate\'s form, initiating the specialized screening checks.',
         icon: 'check-circle',
+        tier: 3,
       },
       {
         id: 'ai-document-scan',
@@ -89,7 +98,8 @@ const phases: Phase[] = [
         tooltipTitle: 'Forensic OCR & Fraud Check',
         description: 'AI instantly scans uploaded documents (IDs, degrees, pay slips) to check for metadata alterations, edits, or optical forgery.',
         icon: 'ai-cpu',
-        colorClass: styles.phaseAI, // Highlighted with AI purple theme
+        colorClass: styles.phaseAI,
+        tier: 1,
       },
       {
         id: 'admin',
@@ -97,6 +107,7 @@ const phases: Phase[] = [
         tooltipTitle: 'Compliance Verification',
         description: 'OzClu compliance officers verify compliance standards and document authenticity internally.',
         icon: 'shield',
+        tier: 2,
       },
       {
         id: 'verifier',
@@ -104,6 +115,7 @@ const phases: Phase[] = [
         tooltipTitle: 'Source Verification',
         description: 'Our verification experts contact primary sources, databases, and authorities to cross-check records.',
         icon: 'search',
+        tier: 1,
       },
       {
         id: 'checks-done',
@@ -111,6 +123,7 @@ const phases: Phase[] = [
         tooltipTitle: 'Audited & Locked',
         description: 'All screening processes are finalized, audited, and marked complete in the secure database.',
         icon: 'magnifying-glass',
+        tier: 1,
       },
     ],
   },
@@ -124,6 +137,7 @@ const phases: Phase[] = [
         tooltipTitle: 'Tamper-proof Report',
         description: 'A comprehensive, digitally signed background verification report is automatically generated.',
         icon: 'file-text',
+        tier: 1,
       },
       {
         id: 'ai-risk-scoring',
@@ -131,7 +145,8 @@ const phases: Phase[] = [
         tooltipTitle: 'Smart Profile & Insights',
         description: 'AI synthesizes findings, flags database discrepancies, computes an overall risk rating, and compiles an executive summary.',
         icon: 'ai-sparkles',
-        colorClass: styles.phaseAI, // Highlighted with AI purple theme
+        colorClass: styles.phaseAI,
+        tier: 1,
       },
       {
         id: 'delivered',
@@ -139,6 +154,7 @@ const phases: Phase[] = [
         tooltipTitle: 'Dashboard Integration',
         description: 'The final PDF report is securely dispatched to the HR portal and synced directly with their ATS.',
         icon: 'mailbox',
+        tier: 3,
       },
       {
         id: 'company-hr-recv',
@@ -146,6 +162,7 @@ const phases: Phase[] = [
         tooltipTitle: 'Outcome Review',
         description: 'HR receives a secure alert to access and review the candidate\'s verified credentials and clear findings.',
         icon: 'building',
+        tier: 2,
       },
       {
         id: 'hire-decision',
@@ -153,6 +170,7 @@ const phases: Phase[] = [
         tooltipTitle: 'Confident Onboarding',
         description: 'The company confidently proceeds with onboarding the candidate, backed by verified screening data.',
         icon: 'target',
+        tier: 1,
       },
     ],
   },
@@ -315,7 +333,11 @@ export default function HowItWorks() {
                   const stepColorClass = step.colorClass || phase.colorClass;
                   
                   return (
-                    <div key={step.id} className={styles.stepItem}>
+                    <div 
+                      key={step.id} 
+                      className={`${styles.stepItem} ${styles[`tier${step.tier}`]}`}
+                      data-id={step.id}
+                    >
                       <div className={`${styles.stepNode} ${stepColorClass}`}>
                         {/* Tooltip containing "what is the use of that" */}
                         <div className={styles.tooltip}>
