@@ -36,8 +36,8 @@ export default function Footer() {
             Transparency-led background verification and screening services. Making hiring safer, faster, and more compliant.
           </p>
           <div className={styles.contact}>
-            <a href="mailto:indiaops@ozclu.com" className={`body-sm ${styles.email}`}>
-              indiaops@ozclu.com
+            <a href="mailto:info@ozclu.com" className={`body-sm ${styles.email}`}>
+              info@ozclu.com
             </a>
           </div>
           <div className={styles.social}>

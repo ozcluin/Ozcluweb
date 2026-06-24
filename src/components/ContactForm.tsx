@@ -95,7 +95,7 @@ export default function ContactForm() {
                   </div>
                   <div>
                     <span className="label-sm" style={{ color: 'var(--secondary)', marginBottom: '0.25rem', display: 'block' }}>Email</span>
-                    <a href="mailto:indiaops@ozclu.com" className={styles.infoLink}>indiaops@ozclu.com</a>
+                    <a href="mailto:info@ozclu.com" className={styles.infoLink}>info@ozclu.com</a>
                   </div>
                 </div>
 
