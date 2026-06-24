@@ -95,16 +95,28 @@ export default function ServicesSection() {
         </ScrollReveal>
 
         <div className={styles.grid}>
-          {services.map((service, i) => (
-            <ScrollReveal key={service.title} delay={100 * (i + 1)}>
-              <div className={`glass-panel glass-card-hover ${styles.card}`}>
-                <div className={styles.cardIcon}>{service.icon}</div>
-                <h3 className={`headline-sm ${styles.cardTitle}`}>{service.title}</h3>
-                <p className={`body-sm ${styles.cardDesc}`}>{service.description}</p>
-                <span className={`chip chip-primary ${styles.audience}`}>{service.audience}</span>
-              </div>
-            </ScrollReveal>
-          ))}
+          {services.map((service, i) => {
+            const idMap: { [key: string]: string } = {
+              'Employment Background Checks': 'employment-checks',
+              'Identity Verification': 'identity-verification',
+              'Business Due Diligence': 'due-diligence',
+              'Compliance Screening': 'compliance-screening',
+              'Continuous Monitoring': 'continuous-monitoring',
+              'Custom Verification Workflows': 'custom-workflows',
+            };
+            const cardId = idMap[service.title] || service.title.toLowerCase().replace(/\s+/g, '-');
+
+            return (
+              <ScrollReveal key={service.title} delay={100 * (i + 1)}>
+                <div id={cardId} className={`glass-panel glass-card-hover ${styles.card}`}>
+                  <div className={styles.cardIcon}>{service.icon}</div>
+                  <h3 className={`headline-sm ${styles.cardTitle}`}>{service.title}</h3>
+                  <p className={`body-sm ${styles.cardDesc}`}>{service.description}</p>
+                  <span className={`chip chip-primary ${styles.audience}`}>{service.audience}</span>
+                </div>
+              </ScrollReveal>
+            );
+          })}
         </div>
       </div>
     </section>

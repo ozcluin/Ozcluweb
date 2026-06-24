@@ -3,25 +3,18 @@ import Logo from './Logo';
 import styles from './Footer.module.css';
 
 const footerLinks = {
-  services: [
-    { label: 'Employment Checks', href: '/services' },
-    { label: 'Identity Verification', href: '/services' },
-    { label: 'Due Diligence', href: '/services' },
-    { label: 'Compliance Screening', href: '/services' },
-    { label: 'Continuous Monitoring', href: '/services' },
-  ],
   resources: [
     { label: 'Latest News', href: '/news' },
     { label: 'About Us', href: '/about' },
-    { label: 'Our Approach', href: '/about' },
+    { label: 'Our Approach', href: '/services#how-it-works' },
     { label: 'Contact', href: '/contact' },
     { label: 'Blog', href: '/news' },
   ],
   legal: [
-    { label: 'Privacy Policy', href: '#' },
-    { label: 'Terms of Service', href: '#' },
-    { label: 'Compliance', href: '/about' },
-    { label: 'FAQ', href: '#' },
+    { label: 'Privacy Policy', href: '/privacy' },
+    { label: 'Terms of Service', href: '/terms' },
+    { label: 'Compliance', href: '/about#compliance' },
+    { label: 'FAQ', href: '/faq' },
   ],
 };
 
@@ -55,21 +48,6 @@ export default function Footer() {
         </div>
 
         {/* Link columns */}
-        <div className={styles.linkCol}>
-          <h4 className={`label-md ${styles.colTitle}`}>Services</h4>
-          <ul className={styles.linkList}>
-            {footerLinks.services.map((link) => (
-              <li key={link.label}>
-                {link.href.startsWith('/') ? (
-                  <Link href={link.href} className={`body-sm ${styles.link}`}>{link.label}</Link>
-                ) : (
-                  <a href={link.href} className={`body-sm ${styles.link}`}>{link.label}</a>
-                )}
-              </li>
-            ))}
-          </ul>
-        </div>
-
         <div className={styles.linkCol}>
           <h4 className={`label-md ${styles.colTitle}`}>Resources</h4>
           <ul className={styles.linkList}>
