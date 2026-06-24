@@ -1,0 +1,102 @@
+.features {
+  /* Container for all feature sections */
+}
+
+.feature {
+  overflow: hidden;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-10);
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-16);
+  }
+}
+
+/* Reversed layout — image on left */
+.reversed .content {
+  order: 2;
+}
+
+.reversed .imageCol {
+  order: 1;
+}
+
+@media (max-width: 1023px) {
+  .reversed .content { order: 1; }
+  .reversed .imageCol { order: 2; }
+}
+
+/* Content */
+.content {
+  max-width: 520px;
+}
+
+@media (min-width: 1024px) {
+  .reversed .content {
+    margin-left: auto;
+  }
+}
+
+.title {
+  color: var(--on-surface);
+  margin-bottom: var(--space-5);
+}
+
+.body {
+  color: var(--on-surface-variant);
+  margin-bottom: var(--space-6);
+}
+
+.bullets {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.bullet {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--on-surface);
+  line-height: 1.4;
+}
+
+.bullet svg {
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+/* Image */
+.imageCol {
+  width: 100%;
+}
+
+.imageWrapper {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-elevated);
+  position: relative;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--transition-slow);
+}
+
+.imageWrapper:hover .image {
+  transform: scale(1.02);
+}

@@ -1,0 +1,27 @@
+.form {
+  display: flex;
+  gap: var(--space-3);
+  max-width: 420px;
+  margin: 0 auto var(--space-4);
+}
+
+.input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--divider);
+  border-radius: var(--radius);
+  background: var(--surface-container-lowest);
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  color: var(--on-surface);
+  transition: border-color var(--transition-fast);
+}
+
+.input::placeholder {
+  color: var(--outline);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--primary-container);
+}

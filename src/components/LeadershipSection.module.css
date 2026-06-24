@@ -1,0 +1,139 @@
+.section {
+  background: var(--surface);
+}
+
+.header {
+  margin-bottom: var(--space-12);
+}
+
+.title {
+  color: var(--on-surface);
+  margin-bottom: var(--space-4);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Lead card */
+.leadCard {
+  width: 100%;
+}
+
+.card {
+  overflow: hidden;
+}
+
+.cardLead {
+  position: relative;
+  min-height: 480px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0;
+  border-radius: var(--radius-xl);
+}
+
+.cardImageLead {
+  position: absolute;
+  inset: 0;
+}
+
+.portrait {
+  object-fit: cover;
+  object-position: center top;
+  filter: grayscale(20%);
+  transition: filter var(--transition-slow);
+}
+
+.cardLead:hover .portrait {
+  filter: grayscale(0%);
+}
+
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(229, 234, 223, 0.95) 0%,
+    rgba(229, 234, 223, 0.6) 40%,
+    transparent 70%
+  );
+}
+
+.cardContent {
+  position: relative;
+  z-index: 1;
+  padding: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.cardName {
+  color: var(--on-surface);
+}
+
+.cardBio {
+  color: var(--on-surface-variant);
+  max-width: 400px;
+}
+
+.socialLink {
+  color: var(--secondary);
+  transition: color var(--transition-fast);
+  display: inline-flex;
+  margin-top: var(--space-1);
+}
+
+.socialLink:hover {
+  color: var(--primary);
+}
+
+/* Secondary cards */
+.secondaryCards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.cardSecondary {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-5);
+  padding: var(--space-6);
+}
+
+.cardImageSecondary {
+  flex-shrink: 0;
+  width: 100px;
+  height: 100px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.portraitSmall {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(20%);
+  transition: filter var(--transition-slow);
+}
+
+.cardSecondary:hover .portraitSmall {
+  filter: grayscale(0%);
+}
+
+.cardContentSecondary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}

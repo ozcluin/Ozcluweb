@@ -1,0 +1,24 @@
+.hero {
+  padding-top: calc(4rem + var(--space-16));
+  padding-bottom: var(--space-12);
+  background: var(--surface);
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .hero {
+    padding-top: calc(4rem + var(--space-24));
+    padding-bottom: var(--space-16);
+  }
+}
+
+.heroTitle {
+  color: var(--on-surface);
+  margin-bottom: var(--space-6);
+  max-width: 700px;
+}
+
+.heroBody {
+  color: var(--on-surface-variant);
+  max-width: 600px;
+}
