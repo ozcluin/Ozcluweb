@@ -26,14 +26,14 @@ export default function HeroSection() {
           <div className={styles.textCol}>
             <ScrollReveal>
               <span className="label-md" style={{ color: 'var(--primary)', marginBottom: 'var(--space-4)', display: 'block' }}>
-                Through Clarity, Integrity &amp; Innovation
+                Transparency You Can Verify
               </span>
             </ScrollReveal>
 
             <ScrollReveal delay={100}>
               <h1 className={`display-lg ${styles.headline}`}>
-                Let&apos;s Make It{' '}
-                <span className={styles.headlineAccent}>Transparent.</span>
+                Trust Starts with{' '}
+                <span className={styles.headlineAccent}>Visibility.</span>
               </h1>
             </ScrollReveal>
 

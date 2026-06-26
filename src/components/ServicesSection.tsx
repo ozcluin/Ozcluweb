@@ -85,7 +85,7 @@ export default function ServicesSection() {
         <ScrollReveal>
           <div className="section-header">
             <span className="label-md" style={{ color: 'var(--primary)', marginBottom: 'var(--space-3)', display: 'block' }}>
-              Our Services
+              Verify Right • Verify Fast
             </span>
             <h2 className="headline-md">Verification Services Built for Clarity</h2>
             <p className="body-md">
