@@ -72,13 +72,6 @@ export default function NewsSection() {
               </div>
               <h3 className={`headline-md ${styles.featuredTitle}`}>{articles[0].title}</h3>
               <p className={`body-md ${styles.featuredExcerpt}`}>{articles[0].excerpt}</p>
-              <a href="#" className={styles.readMore}>
-                Read Full Analysis
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                  <polyline points="12 5 19 12 12 19" />
-                </svg>
-              </a>
             </div>
           </div>
         </ScrollReveal>
