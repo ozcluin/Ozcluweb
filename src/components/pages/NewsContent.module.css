@@ -1,10 +1,20 @@
+.pageWrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.pageContent {
+  position: relative;
+  z-index: 1;
+}
+
 .hero {
   padding-top: calc(4rem + var(--space-16));
   padding-bottom: var(--space-16);
-  background: var(--surface-container-low);
+  background: transparent;
   text-align: center;
   position: relative;
-  overflow: hidden;
 }
 
 /* Background layers */
@@ -36,8 +46,9 @@
   background: linear-gradient(
     180deg,
     rgba(246, 251, 240, 0.4) 0%,
-    rgba(246, 251, 240, 0.3) 50%,
-    var(--surface-container-low) 100%
+    rgba(246, 251, 240, 0.2) 20%,
+    rgba(246, 251, 240, 0.5) 80%,
+    var(--surface) 100%
   );
 }
 
@@ -70,7 +81,7 @@
 
 /* Subscribe */
 .subscribe {
-  background: var(--surface);
+  background: transparent;
 }
 
 .subscribeCard {

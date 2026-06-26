@@ -2,6 +2,10 @@
   background: var(--surface-container-low);
 }
 
+.transparent {
+  background: transparent !important;
+}
+
 .header {
   margin-bottom: var(--space-12);
 }

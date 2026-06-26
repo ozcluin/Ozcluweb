@@ -34,9 +34,13 @@ const articles = [
   },
 ];
 
-export default function NewsSection() {
+interface NewsSectionProps {
+  isTransparent?: boolean;
+}
+
+export default function NewsSection({ isTransparent = false }: NewsSectionProps) {
   return (
-    <section id="news" className={`section ${styles.section}`} aria-label="Latest Insights">
+    <section id="news" className={`section ${styles.section} ${isTransparent ? styles.transparent : ''}`} aria-label="Latest Insights">
       <div className="container">
         <ScrollReveal>
           <div className={styles.header}>
