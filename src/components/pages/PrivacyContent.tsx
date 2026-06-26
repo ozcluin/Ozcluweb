@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import ScrollReveal from '../ScrollReveal';
 import styles from './PrivacyContent.module.css';
 
@@ -5,7 +6,22 @@ export default function PrivacyContent() {
   return (
     <>
       <section className={styles.hero}>
-        <div className="container">
+        {/* Background layers */}
+        <div className={styles.bgLayer}>
+          <Image
+            src="/images/faq-bg.png"
+            alt=""
+            fill
+            priority
+            quality={90}
+            className={styles.bgImage}
+            sizes="100vw"
+          />
+          <div className={styles.bgOverlay} />
+          <div className={styles.bgGradient} />
+        </div>
+
+        <div className={`container ${styles.content}`}>
           <ScrollReveal>
             <span className="label-md" style={{ color: 'var(--primary)', marginBottom: 'var(--space-3)', display: 'block' }}>
               Legal & Compliance

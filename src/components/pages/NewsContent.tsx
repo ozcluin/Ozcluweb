@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import NewsSection from "@/components/NewsSection";
 import SubscribeForm from "@/components/SubscribeForm";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -8,7 +9,22 @@ export default function NewsContent() {
     <>
       {/* News Hero */}
       <section className={styles.hero}>
-        <div className="container">
+        {/* Background layers */}
+        <div className={styles.bgLayer}>
+          <Image
+            src="/images/news-bg.png"
+            alt=""
+            fill
+            priority
+            quality={90}
+            className={styles.bgImage}
+            sizes="100vw"
+          />
+          <div className={styles.bgOverlay} />
+          <div className={styles.bgGradient} />
+        </div>
+
+        <div className={`container ${styles.content}`}>
           <ScrollReveal>
             <h1 className={`display-lg ${styles.heroTitle}`}>
               Insights into the Future of Verification

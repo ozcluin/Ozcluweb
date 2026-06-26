@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import ContactForm from "@/components/ContactForm";
 import ScrollReveal from "@/components/ScrollReveal";
 import styles from "./ContactContent.module.css";
@@ -7,7 +8,22 @@ export default function ContactContent() {
     <>
       {/* Contact Hero */}
       <section className={styles.hero}>
-        <div className="container">
+        {/* Background layers */}
+        <div className={styles.bgLayer}>
+          <Image
+            src="/images/contact-bg.png"
+            alt=""
+            fill
+            priority
+            quality={90}
+            className={styles.bgImage}
+            sizes="100vw"
+          />
+          <div className={styles.bgOverlay} />
+          <div className={styles.bgGradient} />
+        </div>
+
+        <div className={`container ${styles.content}`}>
           <ScrollReveal>
             <span className="label-md" style={{ color: "var(--gold)", marginBottom: "var(--space-4)", display: "block" }}>
               Get in Touch

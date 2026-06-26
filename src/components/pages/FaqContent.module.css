@@ -5,6 +5,46 @@
   text-align: center;
   position: relative;
   border-bottom: 1px solid var(--divider);
+  overflow: hidden;
+}
+
+/* Background layers */
+.bgLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.bgImage {
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.55;
+}
+
+.bgOverlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 70% 30%,
+    rgba(224, 242, 254, 0.35) 0%,
+    transparent 60%
+  );
+}
+
+.bgGradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(246, 251, 240, 0.4) 0%,
+    rgba(246, 251, 240, 0.3) 50%,
+    var(--surface-container-low) 100%
+  );
+}
+
+.content {
+  position: relative;
+  z-index: 1;
 }
 
 @media (min-width: 768px) {
