@@ -1,3 +1,6 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Logo from './Logo';
 import styles from './Footer.module.css';
@@ -19,6 +22,31 @@ const footerLinks = {
 };
 
 export default function Footer() {
+  const [email, setEmail] = useState('info@ozclu.com');
+  const [phone, setPhone] = useState('');
+  const [address, setAddress] = useState('');
+  const [tagline, setTagline] = useState('Transparency-led background verification and screening services. Making hiring safer, faster, and more compliant.');
+  const [siteName, setSiteName] = useState('OZCLU Verification Services');
+
+  useEffect(() => {
+    async function fetchSettings() {
+      try {
+        const res = await fetch('/api/settings');
+        if (res.ok) {
+          const data = await res.json();
+          if (data.contactEmail) setEmail(data.contactEmail);
+          if (data.contactPhone) setPhone(data.contactPhone);
+          if (data.address) setAddress(data.address);
+          if (data.tagline) setTagline(data.tagline);
+          if (data.siteName) setSiteName(data.siteName);
+        }
+      } catch (err) {
+        console.error('Failed to load settings in footer:', err);
+      }
+    }
+    fetchSettings();
+  }, []);
+
   return (
     <footer id="footer" className={styles.footer} role="contentinfo">
       <div className={`container ${styles.inner}`}>
@@ -26,14 +54,13 @@ export default function Footer() {
         <div className={styles.brand}>
           <Logo size="md" />
           <p className={`body-sm ${styles.tagline}`}>
-            Transparency-led background verification and screening services. Making hiring safer, faster, and more compliant.
+            {tagline}
           </p>
-          <div className={styles.contact}>
-            <a href="mailto:info@ozclu.com" className={`body-sm ${styles.email}`}>
-              info@ozclu.com
+          <div className={styles.contact} style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+            <a href={`mailto:${email}`} className={`body-sm ${styles.email}`}>
+              {email}
             </a>
           </div>
-
         </div>
 
         {/* Link columns */}
@@ -72,7 +99,7 @@ export default function Footer() {
       <div className={styles.bottomBar}>
         <div className={`container ${styles.bottomInner}`}>
           <p className={`body-sm ${styles.copyright}`}>
-            © {new Date().getFullYear()} OZCLU Verification Services. All rights reserved.
+            © {new Date().getFullYear()} {siteName}. All rights reserved.
           </p>
           <p className={`body-sm ${styles.legalNote}`}>
             OzClu is committed to transparent governance and responsible data practices.

@@ -1,15 +1,37 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import ScrollReveal from './ScrollReveal';
 import styles from './HeroSection.module.css';
 
 export default function HeroSection() {
+  const [heroImage, setHeroImage] = useState('/images/hero-bg.png');
+  const [tagline, setTagline] = useState('Trust Starts with Visibility.');
+
+  useEffect(() => {
+    async function fetchSettings() {
+      try {
+        const res = await fetch('/api/settings');
+        if (res.ok) {
+          const data = await res.json();
+          if (data.heroBackgroundImage) setHeroImage(data.heroBackgroundImage);
+          if (data.tagline) setTagline(data.tagline);
+        }
+      } catch (err) {
+        console.error('Failed to load hero settings dynamically:', err);
+      }
+    }
+    fetchSettings();
+  }, []);
+
   return (
     <section id="hero" className={styles.hero} aria-label="Hero">
       {/* Background layers */}
       <div className={styles.bgLayer}>
         <Image
-          src="/images/hero-bg.png"
+          src={heroImage}
           alt=""
           fill
           priority
@@ -32,8 +54,14 @@ export default function HeroSection() {
 
             <ScrollReveal delay={100}>
               <h1 className={`display-lg ${styles.headline}`}>
-                Trust Starts with{' '}
-                <span className={styles.headlineAccent}>Visibility.</span>
+                {tagline.toLowerCase().includes('trust starts with') ? (
+                  <>
+                    Trust Starts with{' '}
+                    <span className={styles.headlineAccent}>Visibility.</span>
+                  </>
+                ) : (
+                  tagline
+                )}
               </h1>
             </ScrollReveal>
 
@@ -61,7 +89,7 @@ export default function HeroSection() {
             <div className={styles.imageWrapper}>
               <div className={styles.imageGlass}>
                 <Image
-                  src="/images/hero-bg.png"
+                  src={heroImage}
                   alt="Abstract glass panels representing transparency in verification"
                   width={560}
                   height={420}

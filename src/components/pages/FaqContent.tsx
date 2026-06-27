@@ -1,11 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import ScrollReveal from '../ScrollReveal';
 import styles from './FaqContent.module.css';
 
-const faqs = [
+const fallbackFaqs = [
   {
     question: 'How long do standard background verification checks take?',
     answer: 'Standard employment background and identity checks are usually completed within 3 to 5 business days. Complex international verifications or detailed business due diligence screenings may take up to 7 to 10 business days depending on responsiveness of primary sources.',
@@ -33,7 +33,28 @@ const faqs = [
 ];
 
 export default function FaqContent() {
+  const [displayedFaqs, setDisplayedFaqs] = useState(fallbackFaqs);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchFaqs() {
+      try {
+        const res = await fetch('/api/faq');
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.length > 0) {
+            setDisplayedFaqs(data);
+          }
+        }
+      } catch (err) {
+        console.error('Failed to load FAQs dynamically:', err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchFaqs();
+  }, []);
 
   const toggleFaq = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -78,7 +99,7 @@ export default function FaqContent() {
         <div className={styles.container}>
           <ScrollReveal delay={300}>
             <div className={styles.faqList}>
-              {faqs.map((faq, index) => {
+              {displayedFaqs.map((faq, index) => {
                 const isOpen = openIndex === index;
                 return (
                   <div
